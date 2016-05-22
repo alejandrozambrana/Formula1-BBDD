@@ -35,7 +35,7 @@
         
         %>
         <tr><th>Cod. Piloto</th><th>Nombre</th><th>Apellido</th><th>F.Nacimiento</th><th>Nacionalidad</th>
-        <th>Titulos</th><th>Nº Monoplaza</th><th>Cod.Escuderia</th><th></th><th></th></tr>
+        <th>Titulos</th><th>Nº Monoplaza</th><th>Escuderia</th><th></th><th></th></tr>
         <%
         //muestra los datos de la consulta
         while (listado.next()) {
@@ -47,7 +47,45 @@
             out.println("<td>" + listado.getString("Nacionalidad") + "</td>");
             out.println("<td>" + listado.getString("Titulos") + "</td>");
             out.println("<td>" + listado.getString("Numero") + "</td>");
-            out.println("<td>" + listado.getString("CodigoEscuderia") + "</td>");
+            //muestra el nombre de la escuderia en ve de el codigo
+            String escuderia = "";
+              switch(Integer.valueOf(listado.getString("CodigoEscuderia"))) {
+                  case 1:
+                    escuderia="Mercedes AMG Petronas";
+                    break;
+                  case 2:
+                    escuderia="Ferrari";
+                    break;  
+                  case 3:
+                    escuderia="Williams";
+                    break; 
+                  case 4:
+                    escuderia="Red Bull";
+                    break;
+                  case 5:
+                    escuderia="Force India";
+                    break;
+                  case 6:
+                    escuderia="Renault";
+                    break;
+                  case 7:
+                    escuderia="Toro Rosso";
+                    break;
+                  case 8:
+                    escuderia="Sauber";
+                    break;
+                  case 9:
+                    escuderia="McLaren Honda";
+                    break;
+                  case 10:
+                    escuderia="Manor";
+                    break;
+                  case 11:
+                    escuderia="Haas";
+                    break;
+                    default:
+                }   
+            out.println("<td>" + escuderia + "</td>");
         %>
         <!--Modificar Piloto-->
         <td><form method="get" action="ModificarPilotos.jsp">

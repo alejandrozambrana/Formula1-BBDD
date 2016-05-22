@@ -22,7 +22,7 @@
         </div>
         <%request.setCharacterEncoding("UTF-8");%>
         <div id="anadir" class="row">
-            <p style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Modificar Pilotos</p>
+            <h4 style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Modificar Pilotos</h4>
             <form method="get" action="GuardarModificarPilotos.jsp" class="col s12">
                 <div class="row">
                     <div class="input-field col s3">
@@ -47,9 +47,48 @@
                     <div class="input-field col s6">
                         <input type="text" size="5" name="Numero" value="<%= request.getParameter("Numero") %>">
                     </div>
+                    <%
+                      String escuderia = "";
+                        switch(Integer.valueOf(request.getParameter("CodigoEscuderia"))) {
+                            case 1:
+                              escuderia="Mercedes AMG Petronas";
+                              break;
+                            case 2:
+                              escuderia="Ferrari";
+                              break;  
+                            case 3:
+                              escuderia="Williams";
+                              break; 
+                            case 4:
+                              escuderia="Red Bull";
+                              break;
+                            case 5:
+                              escuderia="Force India";
+                              break;
+                            case 6:
+                              escuderia="Renault";
+                              break;
+                            case 7:
+                              escuderia="Toro Rosso";
+                              break;
+                            case 8:
+                              escuderia="Sauber";
+                              break;
+                            case 9:
+                              escuderia="McLaren Honda";
+                              break;
+                            case 10:
+                              escuderia="Manor";
+                              break;
+                            case 11:
+                              escuderia="Haas";
+                              break;
+                              default:
+                          }
+                    %>
                     <div  class="input-field col s12 m6">
                         <select class="browser-default" id="Codigo Escuderia" name="CodigoEscuderia" required >
-                            <option selected value="0" disabled >Selecciona una Escuderia</option>
+                            <option selected value="0" disabled ><%= escuderia%></option>
                             <option value="1">Mercedes AMG Petronas</option>
                             <option value="2">Ferrari</option>
                             <option value="3">Williams</option>

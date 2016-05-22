@@ -44,7 +44,7 @@
                                + "', '" + request.getParameter("Motor")+ "')";
                 s.execute(AñadirEscuderia);
             %>
-                <h1>Añadiendo Escuderia.</h1>
+                <h1>Añadiendo Escuderia</h1>
             <%
             } else {
             %>

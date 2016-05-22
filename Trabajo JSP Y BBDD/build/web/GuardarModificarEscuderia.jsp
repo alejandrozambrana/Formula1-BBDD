@@ -35,7 +35,7 @@
                             + "' WHERE Codigo=" + Integer.valueOf(request.getParameter("Codigo"));
             s.execute(modificar);
             %>
-            <h1>Se realizo la actualizacion.</h1>
+            <h1>Realizando Actualizacion</h1>
             <%
             //cerrar conexion con la base de datos
             conexion.close();

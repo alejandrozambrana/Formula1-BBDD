@@ -5818,6 +5818,7 @@ textarea.materialize-textarea + label:after {
 
 .input-field .prefix {
   position: absolute;
+  top:15px;
   width: 3rem;
   font-size: 2rem;
   transition: color .2s;

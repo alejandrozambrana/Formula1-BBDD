@@ -15,4 +15,6 @@ th, td{
     background-color: #f2f2f2;
     margin:auto;
     width: 40%;
+    box-shadow: 15px 15px 15px #737373;
+    border-radius: 25px;
 }

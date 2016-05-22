@@ -31,6 +31,6 @@
         %>
         <a href="Escuderia.jsp" class="waves-effect waves-light btn blue" style=" float:left; margin: 50px 0px 50px 30%;" ><i class="material-icons left">reorder</i> Escuderia</a>
         <a href="Pilotos.jsp" class="waves-effect waves-light btn blue" style="float:right; margin: 50px 33% 50px 0px;" ><i class="material-icons left">reorder</i> Pilotos</a>
-        
+        <a href="Login.jsp" style=" float:right; margin:-25% 15px 0% 90%; color:#f2f2f2;"><i class="tiny material-icons left" style="margin-top: 3px;">input</i>Salir</a>
     </body>
 </html>

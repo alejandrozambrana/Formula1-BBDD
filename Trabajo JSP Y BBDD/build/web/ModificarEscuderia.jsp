@@ -22,7 +22,7 @@
         </div>
         <%request.setCharacterEncoding("UTF-8");%>
         <div id="anadir" class="row">
-            <p style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Modificar Escuderia</p>
+            <h4 style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Modificar Escuderia</h4>
             <form method="get" action="GuardarModificarEscuderia.jsp" class="col s12">
                 <div class="row">
                     <div class="input-field col s3">

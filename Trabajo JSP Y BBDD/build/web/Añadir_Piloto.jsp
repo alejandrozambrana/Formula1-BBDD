@@ -50,7 +50,7 @@
 
                 s.execute(AñadirEscuderia);
             %>
-                <h1>Piloto Añadidos.</h1>
+                <h1>Añadiendo Piloto</h1>
             <%
             } else {
             %>

@@ -17,7 +17,7 @@
             <img src="imagenes/logo.png" style="width: 150px; height: 70px;">
         </div>
         <div id="anadir" class="row">
-            <p style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Añadir Escuderia</p>
+            <h4 style="text-align: center; padding-top: 3%; color:black; font-weight: bold;">Añadir Escuderia</h4>
             <form method="get" action="Añadir_Escuderia.jsp" class="col s12">
                 <div class="row">
                     <div class="input-field col s3">

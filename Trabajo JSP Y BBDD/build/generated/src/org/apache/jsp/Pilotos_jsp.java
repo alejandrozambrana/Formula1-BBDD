@@ -53,11 +53,21 @@ public final class Pilotos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <meta charset=\"UTF-8\">\n");
+      out.write("        <!--css materialize-->\n");
+      out.write("        <link href=\"materialize/css/materialize.css\" rel=\"stylesheet\">\n");
+      out.write("        <!--Mi estilo-->\n");
+      out.write("        <link href=\"css/estilos.css\" rel=\"stylesheet\">\n");
+      out.write("        <!--iconos materialize-->\n");
+      out.write("        <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n");
+      out.write("        <link rel=\"shortcut icon\" href=\"imagenes/favicon.png\" type=\"image/ico\" />\n");
       out.write("        <title>Pilotos</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <table>\n");
+      out.write("        <div style=\"text-align: center; margin-top: 5px;\">\n");
+      out.write("            <img src=\"imagenes/logo.png\" style=\"width: 150px; height: 70px;\">\n");
+      out.write("        </div>\n");
+      out.write("        <table class=\"striped\">\n");
       out.write("        ");
 
         // carga la base de datos con este accedemos a la base de datos
@@ -74,7 +84,7 @@ public final class Pilotos_jsp extends org.apache.jasper.runtime.HttpJspBase
         
       out.write("\n");
       out.write("        <tr><th>Cod. Piloto</th><th>Nombre</th><th>Apellido</th><th>F.Nacimiento</th><th>Nacionalidad</th>\n");
-      out.write("        <th>Titulos</th><th>Nº Monoplaza</th><th>Cod.Escuderia</th></tr>\n");
+      out.write("        <th>Titulos</th><th>Nº Monoplaza</th><th>Escuderia</th><th></th><th></th></tr>\n");
       out.write("        ");
 
         //muestra los datos de la consulta
@@ -87,15 +97,97 @@ public final class Pilotos_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("<td>" + listado.getString("Nacionalidad") + "</td>");
             out.println("<td>" + listado.getString("Titulos") + "</td>");
             out.println("<td>" + listado.getString("Numero") + "</td>");
-            out.println("<td>" + listado.getString("Codigo Escuderia") + "</td>");
-        }
+            //muestra el nombre de la escuderia en ve de el codigo
+            String escuderia = "";
+              switch(Integer.valueOf(listado.getString("CodigoEscuderia"))) {
+                  case 1:
+                    escuderia="Mercedes AMG Petronas";
+                    break;
+                  case 2:
+                    escuderia="Ferrari";
+                    break;  
+                  case 3:
+                    escuderia="Williams";
+                    break; 
+                  case 4:
+                    escuderia="Red Bull";
+                    break;
+                  case 5:
+                    escuderia="Force India";
+                    break;
+                  case 6:
+                    escuderia="Renault";
+                    break;
+                  case 7:
+                    escuderia="Toro Rosso";
+                    break;
+                  case 8:
+                    escuderia="Sauber";
+                    break;
+                  case 9:
+                    escuderia="McLaren Honda";
+                    break;
+                  case 10:
+                    escuderia="Manor";
+                    break;
+                  case 11:
+                    escuderia="Haas";
+                    break;
+                    default:
+                }   
+            out.println("<td>" + escuderia + "</td>");
         
       out.write("\n");
-      out.write("        </table>\n");
-      out.write("       \n");
-      out.write("        <button><a href=\"Acceso.jsp\"> Volver al Acceso</button>\n");
-      out.write("        <button><a href=\"Escuderia.jsp\"> Ver Escuderias</button>\n");
-      out.write("        <button><a href=\"Añadir_Datos_Piloto.jsp\"> Añadir Piloto</button>\n");
+      out.write("        <!--Modificar Piloto-->\n");
+      out.write("        <td><form method=\"get\" action=\"ModificarPilotos.jsp\">\n");
+      out.write("            <input type=\"hidden\" name=\"Codigo\" value=\"");
+      out.print(listado.getString("Codigo") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"nombre\" value=\"");
+      out.print(listado.getString("nombre") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"Apellidos\" value=\"");
+      out.print(listado.getString("Apellidos") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"Fecha_nacimiento\" value=\"");
+      out.print(listado.getString("Fecha_nacimiento") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"Nacionalidad\" value=\"");
+      out.print(listado.getString("Nacionalidad") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"Titulos\" value=\"");
+      out.print(listado.getString("Titulos") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"Numero\" value=\"");
+      out.print(listado.getString("Numero") );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"CodigoEscuderia\" value=\"");
+      out.print(listado.getString("CodigoEscuderia") );
+      out.write("\">\n");
+      out.write("            <button type=\"submit\"  class=\"btn-floating blue\"><i class=\"material-icons left\">mode_edit</i></button>\n");
+      out.write("\t</form></td>\n");
+      out.write("        <!--borra Piloto-->\n");
+      out.write("        <td><form method=\"get\" action=\"borrarPiloto.jsp\">\n");
+      out.write("          <input type=\"hidden\" name=\"Codigo\" value=\"");
+      out.print(listado.getString("Codigo") );
+      out.write("\"/>\n");
+      out.write("          <button type=\"submit\"  class=\"btn-floating blue\"><i class=\"material-icons left\">delete</i></button>\n");
+      out.write("        </form></td>\n");
+      out.write("        ");
+ 
+        }
+        //Cerrar la conexion con la base de datos
+        conexion.close();
+        
+      out.write("\n");
+      out.write("        </table>    \n");
+      out.write("        <a href=\"Escuderia.jsp\" class=\"waves-effect waves-light btn blue\" style=\"float: left; margin: 50px 0px 50px 105px;\" ><i class=\"material-icons left\">reorder</i> Ver Escuderia</a>\n");
+      out.write("        <a href=\"Acceso.jsp\" class=\"waves-effect waves-light btn blue\" style=\"float: right; margin: 50px 105px 50px 0px;\" ><i class=\"material-icons left\">replay</i> Volver al Acceso</a>\n");
+      out.write("        <div class=\"fixed-action-btn\" style=\"bottom: 45px; right: 24px;\">\n");
+      out.write("            <a href=\"Añadir_Datos_Piloto.jsp\" class=\"btn-floating btn-large blue\">\n");
+      out.write("              <i class=\"large material-icons\">playlist_add</i>\n");
+      out.write("            </a>\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
