@@ -28,7 +28,7 @@
             request.setCharacterEncoding("UTF-8");
 
             //Ejecuta esta consulta
-            s.execute ("DELETE FROM Escuderia WHERE Codigo=" + request.getParameter("Codigo"));
+            s.execute ("DELETE FROM escuderia WHERE Codigo=" + request.getParameter("Codigo"));
             %>
             <h1>Borrando Escuderia</h1>
         </div>

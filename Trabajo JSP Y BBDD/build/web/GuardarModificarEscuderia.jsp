@@ -28,7 +28,7 @@
             request.setCharacterEncoding("UTF-8");
 
             //Mete la consulta en la variable modificar
-            String modificar = "UPDATE Escuderia SET "
+            String modificar = "UPDATE escuderia SET "
                             + "Codigo=" + Integer.valueOf(request.getParameter("Codigo"))
                             + ", Nombre='" + request.getParameter("Nombre")
                             + "', Motor='" + request.getParameter("Motor")

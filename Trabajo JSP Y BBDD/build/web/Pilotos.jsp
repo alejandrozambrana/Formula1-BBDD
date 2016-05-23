@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -29,6 +30,14 @@
         
         request.setCharacterEncoding("UTF-8");
         
+        //mete el resultado de la consulta en la variable CodigoEscu
+        ResultSet codigoEscu = s.executeQuery ("SELECT e.codigo, e.nombre FROM escuderia e, pilotos p WHERE e.CODIGO=p.codigoEscuderia GROUP BY e.NOMBRE ORDER BY 1");
+        //mete en el hashMap el codigo y el nombre de la escuderia
+        HashMap <String, String> nomEscu = new HashMap <String, String>();
+        while (codigoEscu.next()) {
+        nomEscu.put(codigoEscu.getString("Codigo"), codigoEscu.getString("Nombre"));
+        }
+        
         //mete el resultado de la consulta en la variable listado
         ResultSet listado = s.executeQuery ("SELECT * FROM pilotos");
        
@@ -47,45 +56,9 @@
             out.println("<td>" + listado.getString("Nacionalidad") + "</td>");
             out.println("<td>" + listado.getString("Titulos") + "</td>");
             out.println("<td>" + listado.getString("Numero") + "</td>");
-            //muestra el nombre de la escuderia en ve de el codigo
-            String escuderia = "";
-              switch(Integer.valueOf(listado.getString("CodigoEscuderia"))) {
-                  case 1:
-                    escuderia="Mercedes AMG Petronas";
-                    break;
-                  case 2:
-                    escuderia="Ferrari";
-                    break;  
-                  case 3:
-                    escuderia="Williams";
-                    break; 
-                  case 4:
-                    escuderia="Red Bull";
-                    break;
-                  case 5:
-                    escuderia="Force India";
-                    break;
-                  case 6:
-                    escuderia="Renault";
-                    break;
-                  case 7:
-                    escuderia="Toro Rosso";
-                    break;
-                  case 8:
-                    escuderia="Sauber";
-                    break;
-                  case 9:
-                    escuderia="McLaren Honda";
-                    break;
-                  case 10:
-                    escuderia="Manor";
-                    break;
-                  case 11:
-                    escuderia="Haas";
-                    break;
-                    default:
-                }   
-            out.println("<td>" + escuderia + "</td>");
+            if(nomEscu.containsKey(listado.getString("CodigoEscuderia"))){
+                out.println("<td>" + nomEscu.get(listado.getString("CodigoEscuderia")) + "</td>");
+            }
         %>
         <!--Modificar Piloto-->
         <td><form method="get" action="ModificarPilotos.jsp">
@@ -96,7 +69,7 @@
             <input type="hidden" name="Nacionalidad" value="<%=listado.getString("Nacionalidad") %>">
             <input type="hidden" name="Titulos" value="<%=listado.getString("Titulos") %>">
             <input type="hidden" name="Numero" value="<%=listado.getString("Numero") %>">
-            <input type="hidden" name="CodigoEscuderia" value="<%=listado.getString("CodigoEscuderia") %>">
+            <input type="hidden" name="CodigoEscuderia" value="<%=nomEscu.get(listado.getString("CodigoEscuderia")) %>">
             <button type="submit"  class="btn-floating blue"><i class="material-icons left">mode_edit</i></button>
 	</form></td>
         <!--borra Piloto-->

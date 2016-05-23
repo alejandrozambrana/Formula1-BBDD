@@ -28,7 +28,7 @@
             request.setCharacterEncoding("UTF-8");
 
             // Comprueba si existe el codigo de la escuderia
-            String consultaEscuderia = "SELECT * FROM Escuderia WHERE CODIGO="
+            String consultaEscuderia = "SELECT * FROM escuderia WHERE CODIGO="
                                         //valueOf convierte el dato de entre parentesis a el tipo de dato indicado antes del punto 
                                         + Integer.valueOf(request.getParameter("Codigo"));      
             //mete el resultado de la consulta en la variable CodEscuderia
@@ -39,7 +39,7 @@
 
             //getRow devuelve el numero de filas de CodEscuderia
             if (CodEscuderia.getRow() == 0) {
-                String AñadirEscuderia = "INSERT INTO Escuderia VALUES (" + Integer.valueOf(request.getParameter("Codigo"))
+                String AñadirEscuderia = "INSERT INTO escuderia VALUES (" + Integer.valueOf(request.getParameter("Codigo"))
                                + ", '" + request.getParameter("Nombre")
                                + "', '" + request.getParameter("Motor")+ "')";
                 s.execute(AñadirEscuderia);

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : prueba
-    Created on : 22-may-2016, 18:17:09
-    Author     : Zambrana
---%>
-
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

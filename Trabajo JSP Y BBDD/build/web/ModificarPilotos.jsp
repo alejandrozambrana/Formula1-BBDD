@@ -17,6 +17,18 @@
         <title>Modificar Pilotos</title>
     </head>
     <body>
+        <%
+        // carga la base de datos con este accedemos a la base de datos
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/formula1","root", "");
+        Statement s = conexion.createStatement();
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        //mete el resultado de la consulta en la variable CodigoEscu
+        ResultSet codigoEscu = s.executeQuery ("SELECT codigo, nombre FROM escuderia");
+        %>
+        
         <div style="text-align: center; margin-top: 5px;">
             <img src="imagenes/logo.png" style="width: 150px; height: 70px;">
         </div>
@@ -47,59 +59,16 @@
                     <div class="input-field col s6">
                         <input type="text" size="5" name="Numero" value="<%= request.getParameter("Numero") %>">
                     </div>
-                    <%
-                      String escuderia = "";
-                        switch(Integer.valueOf(request.getParameter("CodigoEscuderia"))) {
-                            case 1:
-                              escuderia="Mercedes AMG Petronas";
-                              break;
-                            case 2:
-                              escuderia="Ferrari";
-                              break;  
-                            case 3:
-                              escuderia="Williams";
-                              break; 
-                            case 4:
-                              escuderia="Red Bull";
-                              break;
-                            case 5:
-                              escuderia="Force India";
-                              break;
-                            case 6:
-                              escuderia="Renault";
-                              break;
-                            case 7:
-                              escuderia="Toro Rosso";
-                              break;
-                            case 8:
-                              escuderia="Sauber";
-                              break;
-                            case 9:
-                              escuderia="McLaren Honda";
-                              break;
-                            case 10:
-                              escuderia="Manor";
-                              break;
-                            case 11:
-                              escuderia="Haas";
-                              break;
-                              default:
-                          }
-                    %>
                     <div  class="input-field col s12 m6">
                         <select class="browser-default" id="Codigo Escuderia" name="CodigoEscuderia" required >
-                            <option selected value="0" disabled ><%= escuderia%></option>
-                            <option value="1">Mercedes AMG Petronas</option>
-                            <option value="2">Ferrari</option>
-                            <option value="3">Williams</option>
-                            <option value="4">Red Bull</option>
-                            <option value="5">Force India</option>
-                            <option value="6">Renault</option>
-                            <option value="7">Toro Rosso</option>
-                            <option value="8">Sauber</option>
-                            <option value="9">McLaren Honda</option>
-                            <option value="10">Manor</option>
-                            <option value="11">Haas</option>
+                            <option selected value="0" disabled ><%= request.getParameter("CodigoEscuderia")%></option>
+                            <%
+                            while (codigoEscu.next()) {
+                            %>
+                            <option value="<%=codigoEscu.getString("Codigo")%>"><%=codigoEscu.getString("Nombre")%></option>
+                            <%
+                            }
+                            %>
                         </select>
                         <input type="hidden" size="5" name="CodigoEscuderia" value="<%= request.getParameter("CodigoEscuderia") %>">
                     </div>

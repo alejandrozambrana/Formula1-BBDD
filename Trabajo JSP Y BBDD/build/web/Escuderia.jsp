@@ -30,7 +30,7 @@
         request.setCharacterEncoding("UTF-8");
         
         //mete el resultado de la consulta en la variable listado
-        ResultSet listado = s.executeQuery ("SELECT * FROM Escuderia");
+        ResultSet listado = s.executeQuery ("SELECT * FROM escuderia");
        
         
         %>
